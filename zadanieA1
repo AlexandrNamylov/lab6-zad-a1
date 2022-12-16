@@ -1,0 +1,60 @@
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest.h"
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <cctype>
+using namespace std;
+
+vector<int> solve(string s)
+{
+    vector <int> ab;
+    int Zag=0, Str=0, Chislo=0;
+    for (int i=0;i <= s.size()-1;i++){
+        if (isupper(s[i])) 
+        Zag += 1;
+        if (islower(s[i]))
+        Str += 1;
+        if (isdigit(s[i]))
+        Chislo += 1;
+    }
+    ab.push_back (Zag);
+    ab.push_back (Str);
+    ab.push_back (Chislo);
+    return ab;
+}
+
+TEST_CASE("Dulustan's tests"){
+    CHECK(solve("Wanted Dead or Alive 200000$") == vector <int> {3, 14, 6});
+    CHECK(solve("One Piece 1997") == vector <int> {2, 6, 4});
+    CHECK(solve("10! is 3628800") == vector <int> {0, 2, 9});    
+}
+
+//минимум 4 теста
+//придумайте прикольные строки!
+TEST_CASE("Student's tests"){
+    CHECK(solve("Chainsaw-Men 2022") == vector <int> {2, 9, 4});
+    CHECK(solve("Madam, I'm Adam") == vector <int> {3, 8, 0});
+    CHECK(solve("I was born on 24/04/2000") == vector <int> {1, 9, 8});
+    CHECK(solve("There are 300 footballers in the Blue Lock") == vector <int> {3, 29, 3});
+}
+
+
+// main отвечает за ввод-вывод
+/* int main()
+ {
+     string s;
+  getline (cin, s);
+   int Zag=0, Str=0, Chislo=0;
+    for (int i=0;i <= s.size()-1;i++){
+        if (isupper(s[i])) 
+        Zag += 1;
+        if (islower(s[i]))
+        Str += 1;
+        if (isdigit(s[i]))
+        Chislo += 1;
+    }
+  cout << Zag << " " << Str << " " << Chislo; 
+ }
+ */
